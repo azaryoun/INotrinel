@@ -6,66 +6,61 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Observable } from 'rxjs/Rx';
 
-import { ParkData } from './../../app/providers/park-data';
+import { NewsService } from './../../providers/news-service';
 
-import { ParkDetails } from './../park-details/park-details'
+import { NewsDetailComponent } from './../news-detail/news-detail-component'
+
+import { News } from './../../models/news';
 
 //import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'home-component',
-  templateUrl: 'home-component.html',
-  styleUrls:['home-component.html']
+  templateUrl: 'home-component.html' 
 })
-export class HomeComponent { parks: Array<Object> = []
-  constructor(public navCtrl: NavController, private parkData: ParkData) {
+export class HomeComponent {
 
-    this.parkData.load().subscribe(data => {
-      this.parks = data;
+  private newses: Array<News> = [];
+
+  constructor(public navCtrl: NavController, private newsService: NewsService) {
+
+    this.newsService.getNews().subscribe(data => {
+      this.newses = data;
     });
 
   }
-  goParkDetails(theParkData) {
-    this.navCtrl.push(ParkDetails, { parkData: theParkData });
+  goNewsDetail(newsData) {
+    this.navCtrl.push(NewsDetailComponent, { newsData: newsData });
   }
 
 
-  getParks(event) {
+  searchNews(event) {
     // Reset items back to all of the items
-    this.parkData.load().subscribe(data => {
-      this.parks = data;
-    });
-    // set queryString to the value of the searchbar
+
+
     let queryString = event.target.value;
     if (queryString !== undefined) {
-      // if the value is an empty string don't filter the items
       if (queryString.trim() == '') {
-        return;
+        this.resetList(event);
       }
-      this.parkData.getFilteredParks(queryString).subscribe(theResult => {
-        this.parks = theResult;
+      this.newsService.getNewsFiltered(queryString).subscribe(data => {
+        this.newses = data;
       })
     }
+
+
+    // set queryString to the value of the searchbar
+
   }
 
   resetList(event) {
-    // Reset items back to all of the items
-    this.parkData.load().subscribe(data => {
-      this.parks = data;
+    this.newsService.getNews().subscribe(data => {
+      this.newses = data;
     });
 
 
   }
 
 
-  customHeaderFn(record, recordIndex, records) {
-    if (recordIndex > 0) {
-      if (record.name.charAt(0) !== records[recordIndex - 1].name.charAt(0)) {
-        return record.name.charAt(0);
-      } else {
-        return null;
-      }
-    } else {
-      return record.name.charAt(0);
-    }
-  }
+
+}

@@ -16,14 +16,14 @@ import { AppSetting } from './../app/app.setting';
 export class NewsService {
     data: any = null;
 
-    private _serviceUrl = 'assets/data/data1.json';
+    private _serviceUrl = 'assets/data/news-data.json';
 
     constructor(private _http: Http2Service) {
         this._serviceUrl = AppSetting.SERVER_IP + this._serviceUrl;
 
     }
 
-    public load() {
+    public getNews() {
 
         let strUrl = this._serviceUrl;
         return this._http.get(strUrl,
@@ -32,12 +32,12 @@ export class NewsService {
 
     }
 
-    getFilteredParks(queryString) {
-        return this.load().map(Parks => {
+    getNewsFiltered(queryString) {
+        return this.getNews().map(news => {
             let theFilteredParks: any = [];
-            for (let thePark of Parks) {
-                if (thePark.name.toLowerCase().indexOf(queryString.toLowerCase()) > -1) {
-                    theFilteredParks.push(thePark);
+            for (let theNews of news) {
+                if (theNews.title.toLowerCase().indexOf(queryString.toLowerCase()) > -1) {
+                    theFilteredParks.push(theNews);
                 }
             }
             return theFilteredParks;

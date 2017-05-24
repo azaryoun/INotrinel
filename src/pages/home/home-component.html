@@ -10,7 +10,7 @@
   </ion-navbar>
 
   <ion-toolbar>
-    <ion-searchbar (ionInput)="getNews($event)" (ionClear)="resetList($event)">
+    <ion-searchbar (ionInput)="searchNews($event)" (ionClear)="resetList($event)">
     </ion-searchbar>
   </ion-toolbar>
 
@@ -20,17 +20,15 @@
 
 
 <ion-content padding>
-  <ion-list [virtualScroll]="parks" [headerFn]="customHeaderFn">
-    <ion-item-divider *virtualHeader="let header">
-      {{ header }}
-    </ion-item-divider>
-    <ion-item *virtualItem="let park" (click)="goParkDetails(park)" detail-push>
+  <ion-list [virtualScroll]="newses" >
+    <ion-item *virtualItem="let news" (click)="goNewsDetail(news)" detail-push>
       <ion-thumbnail item-left>
       <!-- <ion-img src="assets/imgs/thumbs/{{park.image}}"></ion-img> -->
-         <img src="assets/imgs/thumbs/{{park.image}}" />
+      <ion-img src="{{news.image}}"></ion-img>
+        <!-- <img src="{{news.image}}" /> -->
       </ion-thumbnail>
-      <h2>{{park.name}}</h2>
-      <p>{{park.state}}</p>
+      <h2>{{news.title}}</h2>
+      <p>{{news.date}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

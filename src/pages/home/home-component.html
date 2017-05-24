@@ -1,0 +1,36 @@
+
+
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>نوترینل</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar>
+    <ion-searchbar (ionInput)="getNews($event)" (ionClear)="resetList($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+
+
+
+<ion-content padding>
+  <ion-list [virtualScroll]="parks" [headerFn]="customHeaderFn">
+    <ion-item-divider *virtualHeader="let header">
+      {{ header }}
+    </ion-item-divider>
+    <ion-item *virtualItem="let park" (click)="goParkDetails(park)" detail-push>
+      <ion-thumbnail item-left>
+      <!-- <ion-img src="assets/imgs/thumbs/{{park.image}}"></ion-img> -->
+         <img src="assets/imgs/thumbs/{{park.image}}" />
+      </ion-thumbnail>
+      <h2>{{park.name}}</h2>
+      <p>{{park.state}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

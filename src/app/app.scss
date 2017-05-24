@@ -1,0 +1,106 @@
+
+@font-face {
+    font-family: 'webYekan';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    src: url('../assets/fonts/iranSans.ttf');
+}
+
+html{
+direction: rtl;
+
+}
+
+body {
+    font-family: 'webYekan';
+}
+
+
+ion-app.md {
+    font-family: 'webYekan';
+    font-size: 1.4rem;
+    background-color: rgb(255, 255, 255);
+}
+
+.menu-inner{
+    left: auto;
+    right:0;
+
+}
+
+
+
+$contentBackcolor: #263239;
+   
+$contentForecolor:#B2B2B2;
+
+$tabsForecolor:#FFFFFF;
+
+$toolbarBackcolor:#EF473A;
+
+.content-md{
+        background-color: $contentBackcolor;
+        color:$contentForecolor;
+}
+
+
+ion-menu
+ {
+    .item-md
+    {
+            color:$contentForecolor;
+            background-color: #424242;
+            border-bottom: 3px solid $contentBackcolor;
+    }
+}
+
+.toolbar-background {background-color: $toolbarBackcolor;}
+
+
+.searchbar-input-container {background-color: $tabsForecolor;}
+
+
+
+.tabs-md .tabbar {
+     background-color: #000000;
+        color:$tabsForecolor;
+}
+
+.tabs-md .tab-button-icon{
+   color:$tabsForecolor;
+
+
+}
+
+.tabs-md .tab-button{
+
+      color:$tabsForecolor;
+
+}
+
+
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+
+color:$toolbarBackcolor;
+
+}
+.tabs-md .tab-button[aria-selected=true] {
+
+color:$toolbarBackcolor;
+
+}
+
+.toolbar-title-md{
+color:$tabsForecolor;
+
+}
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+color:$tabsForecolor;
+
+}
+
+.list-md .item-block .item-inner {
+    border-bottom: none;
+}

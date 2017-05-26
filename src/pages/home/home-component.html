@@ -1,7 +1,5 @@
-
-
-
 <ion-header>
+
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -10,7 +8,7 @@
   </ion-navbar>
 
   <ion-toolbar>
-    <ion-searchbar (ionInput)="searchNews($event)" (ionClear)="resetList($event)">
+    <ion-searchbar (ionInput)="searchNews($event)" (ionClear)="resetList($event)" placeholder="جستجو" >
     </ion-searchbar>
   </ion-toolbar>
 
@@ -20,15 +18,17 @@
 
 
 <ion-content padding>
-  <ion-list [virtualScroll]="newses" >
+  <ion-list [virtualScroll]="newses">
     <ion-item *virtualItem="let news" (click)="goNewsDetail(news)" detail-push>
       <ion-thumbnail item-left>
-      <!-- <ion-img src="assets/imgs/thumbs/{{park.image}}"></ion-img> -->
-      <ion-img src="{{news.image}}"></ion-img>
+
+        <ion-img src="{{news.image}}"></ion-img>
         <!-- <img src="{{news.image}}" /> -->
       </ion-thumbnail>
       <h2>{{news.title}}</h2>
-      <p>{{news.date}}</p>
+      <p>({{news.date}})</p>
+
     </ion-item>
+ 
   </ion-list>
 </ion-content>

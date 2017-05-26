@@ -1,4 +1,19 @@
 
+
+
+
+$contentBackcolor: #263239;
+   
+$contentForecolor:#B2B2B2;
+
+$tabsForecolor:#FFFFFF;
+
+$toolbarBackcolor:#EF473A;
+
+$itemBackcolor:#424242;
+
+
+
 @font-face {
     font-family: 'webYekan';
     font-style: normal;
@@ -31,29 +46,22 @@ ion-app.md {
 
 
 
-$contentBackcolor: #263239;
-   
-$contentForecolor:#B2B2B2;
-
-$tabsForecolor:#FFFFFF;
-
-$toolbarBackcolor:#EF473A;
-
 .content-md{
         background-color: $contentBackcolor;
         color:$contentForecolor;
 }
 
 
-ion-menu
- {
+
     .item-md
     {
+
             color:$contentForecolor;
-            background-color: #424242;
+            background-color: $itemBackcolor;
             border-bottom: 3px solid $contentBackcolor;
+        
     }
-}
+
 
 .toolbar-background {background-color: $toolbarBackcolor;}
 
@@ -103,4 +111,26 @@ color:$tabsForecolor;
 
 .list-md .item-block .item-inner {
     border-bottom: none;
+}
+
+
+.searchbar-md .searchbar-input {
+   
+    color: $contentForecolor;
+    background-color: $itemBackcolor;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.searchbar-input-container {
+    background-color: $itemBackcolor;
+}
+
+
+.item.active, .item.activated, .item-complex.active .item-content, .item-complex.activated .item-content, .item .item-content.active, .item .item-content.activated {
+
+background-color: darken($itemBackcolor, 10%);
+}
+
+.tabs-md .tab-button-text {
+    padding-left: 10px;
 }

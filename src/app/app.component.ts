@@ -19,9 +19,10 @@ export class MyApp {
 
   // set our app's pages
   appPages: PageInterface[] = [
-    { title: 'Home', component: TabsPage, icon: 'calendar' },
-    { title: 'About', component: TabsPage, index: 1, icon: 'information-circle' },
-    { title: 'Contact', component: TabsPage, index: 2, icon: 'contacts' }
+    { title: 'خانه', component: TabsPage, icon: 'home' },
+    { title: 'عضویت', component: TabsPage, index: 1, icon: 'contacts' },
+    { title: 'ارسال متن', component: TabsPage, index: 2, icon: 'paper-plane' },
+    { title: 'تنظیمات', component: TabsPage, index: 3, icon: 'build' }
   ];
 
   rootPage = TabsPage;

@@ -1,0 +1,22 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>مشروح خبر</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="news-detail-component">
+     <img src="{{news.bigImage}}" />
+  <h1 padding>{{news.title}}</h1>
+  <ion-card>
+    <ion-card-header>
+      {{news.date}}
+    </ion-card-header>
+    <ion-card-content>
+      {{news.text}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

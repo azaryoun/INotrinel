@@ -3,7 +3,9 @@ export class News {
         public id:number,
         public title:string, 
         public date:string,
-        public image:string
+        public image:string,
+        public text:string,
+        public bigImage:string
     ) {}
 
 }

@@ -29,8 +29,8 @@ export class HomeComponent {
     });
 
   }
-  goNewsDetail(newsData) {
-    this.navCtrl.push(NewsDetailComponent, { newsData: newsData });
+  goNewsDetail(news) {
+    this.navCtrl.push(NewsDetailComponent, { newsData: news });
   }
 
 

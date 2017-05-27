@@ -1,21 +1,77 @@
 <ion-content padding no-bounce>
 
-    <ion-icon name="arrow-back" color="light" (click)="doBack()"></ion-icon>
 
-    <form >
-        <ion-list no-lines>
-            <h1 ion-text class="title text-center" color="light">BeersFeed</h1>
-            <p class="subtitle text-center">News within Your Community</p>
-            <ion-item>
-                <ion-label stacked>Phone Number</ion-label>
-                <ion-input type="tel" style="direction:ltr" placeHolder="(___) ___-____" [textMask]="{mask: masks.phoneNumber}"></ion-input>
-            </ion-item>
+    <form>
 
-           
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
-            <button ion-button color="primary" block >ورود</button>
-           
-        </ion-list>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col col-4>
+                </ion-col>
+                <ion-col col-4>
+
+<ion-list>
+     
+      
+
+
+            <ion-item style="background-color:transparent;border:solid #B2B2B2 1px">
+                        <ion-icon item-right name="phone-portrait" style="padding-left:10px;font-size:40px" > </ion-icon>
+                        <ion-input outline type="tel" style="direction:ltr;font-size:40px" placeHolder="(___) ___-____" [textMask]="{mask: masks.phoneNumber}"></ion-input>
+                    </ion-item>
+       
+    </ion-list>
+
+                    
+
+
+                </ion-col>
+                <ion-col col-4>
+
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-4>
+
+                </ion-col>
+                <ion-col col-4 style="text-align:left">
+                    <button ion-button color="light" block outline style="width:60%;float:left">
+                دریافت کد فعال سازی از طریق پیامک
+       </button>
+                </ion-col>
+                <ion-col col-4>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="subtitle text-center">
+            کد فعالسازی در صورت احراز هویت برای شما پیامک خواهد شد
+
+        </p>
+
+
+
+
     </form>
     <!--</div>-->
 </ion-content>

@@ -155,3 +155,20 @@ background-color: darken($itemBackcolor, 10%);
 text-align: center;
 
 }
+.text-input-md {
+
+  text-align: center;
+  //  font-size: 23px;
+}
+
+.item-md.item-block .item-inner {
+
+    border-bottom: none;
+}
+
+ion-input {
+    background-color: $contentBackcolor !important;
+    color: $contentForecolor !important;
+
+    
+}

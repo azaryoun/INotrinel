@@ -1,0 +1,21 @@
+<ion-content padding no-bounce>
+
+    <ion-icon name="arrow-back" color="light" (click)="doBack()"></ion-icon>
+
+    <form >
+        <ion-list no-lines>
+            <h1 ion-text class="title text-center" color="light">BeersFeed</h1>
+            <p class="subtitle text-center">News within Your Community</p>
+            <ion-item>
+                <ion-label stacked>Phone Number</ion-label>
+                <ion-input type="tel" style="direction:ltr" placeHolder="(___) ___-____" [textMask]="{mask: masks.phoneNumber}"></ion-input>
+            </ion-item>
+
+           
+
+            <button ion-button color="primary" block >ورود</button>
+           
+        </ion-list>
+    </form>
+    <!--</div>-->
+</ion-content>

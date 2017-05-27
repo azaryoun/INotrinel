@@ -3,6 +3,8 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { WelcomeComponent } from './../pages/welcome/welcome-component';
+
 
 export interface PageInterface {
   title: string;
@@ -18,14 +20,16 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // set our app's pages
-  appPages: PageInterface[] = [
+  public appPages: PageInterface[] = [
     { title: 'خانه', component: TabsPage, icon: 'home' },
     { title: 'عضویت', component: TabsPage, index: 1, icon: 'contacts' },
     { title: 'ارسال متن', component: TabsPage, index: 2, icon: 'paper-plane' },
     { title: 'تنظیمات', component: TabsPage, index: 3, icon: 'build' }
   ];
 
-  rootPage = TabsPage;
+ // rootPage = TabsPage;
+    public rootPage = WelcomeComponent;
+
 
   constructor(platform: Platform, public menu: MenuController) {
     platform.ready().then(() => {

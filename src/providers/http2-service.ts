@@ -14,6 +14,7 @@ export class Http2Service {
     public get(url, opts = AppSetting.getRequestOptions()) {
         this.configureAuth(opts);
         return this._http.get(url, opts).map(
+        
             response => {
                 try {
                     let strAccessToken = response.headers.get("Authorization");

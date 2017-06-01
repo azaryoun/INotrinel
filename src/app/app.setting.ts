@@ -6,7 +6,7 @@ export class AppSetting {
 
     public static DROPDOWN_TEXT = "(Not Selected)";
 
-    public static SERVER_IP = "";
+    public static SERVER_IP = "http://localhost:50070/api/";
 
     public static AUTH_KEY = "authKey";
 

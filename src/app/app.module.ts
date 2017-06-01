@@ -10,13 +10,13 @@ import { HomeComponent } from '../pages/home/home-component';
 import { NewsDetailComponent } from '../pages/news-detail/news-detail-component';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WelcomeComponent } from '../pages/welcome/welcome-component';
-import {  LoginComponent } from '../pages/login/login-component';
+import { LoginComponent } from '../pages/login/login-component';
 
 
 //Services
 import { Http2Service } from './../providers/http2-service';
 import { NewsService } from './../providers/news-service';
-
+import { AccountService } from './../providers/account-service';
 
 
 @NgModule({
@@ -49,6 +49,7 @@ import { NewsService } from './../providers/news-service';
   providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }
     , Http2Service
     , NewsService
+    , AccountService
 
   ]
 })

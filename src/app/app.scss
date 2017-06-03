@@ -12,7 +12,7 @@ $toolbarBackcolor:#EF473A;
 
 $itemBackcolor:#424242;
 
-
+$text-input-highlight-color-invalid:$toolbarBackcolor;
 
 @font-face {
     font-family: 'webYekan';
@@ -188,3 +188,10 @@ ion-input {
     border-bottom-color: $contentBackcolor;
     box-shadow: none;
 }
+
+
+.list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {
+    border-bottom-color: $contentBackcolor;
+    box-shadow: none;
+}
+

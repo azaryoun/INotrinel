@@ -22,6 +22,8 @@ export class LoginComponent {
 
   public masks: any;
 
+  public errorMessage:string;
+
 
   constructor(public navCtrl: NavController, fb: FormBuilder, private _accountService: AccountService) {
 

@@ -14,10 +14,13 @@ export class Http2Service {
     public get(url, opts = AppSetting.getRequestOptions()) {
         this.configureAuth(opts);
         return this._http.get(url, opts).map(
-        
+
             response => {
                 try {
                     let strAccessToken = response.headers.get("Authorization");
+                    if (strAccessToken.toString() == 'undefined') {
+                        throw new Error("There is no Authorization token");
+                    }
                     let oJWT = new JWT(strAccessToken);
                     AppSetting.setAuth(oJWT);
                 }
@@ -39,6 +42,9 @@ export class Http2Service {
             response => {
                 try {
                     let strAccessToken = response.headers.get("Authorization");
+                    if (strAccessToken.toString() == 'undefined') {
+                        throw new Error("There is no Authorization token");
+                    }
                     let oJWT = new JWT(strAccessToken);
                     AppSetting.setAuth(oJWT);
                 }
@@ -59,6 +65,9 @@ export class Http2Service {
             response => {
                 try {
                     let strAccessToken = response.headers.get("Authorization");
+                    if (strAccessToken.toString() == 'undefined') {
+                        throw new Error("There is no Authorization token");
+                    }
                     let oJWT = new JWT(strAccessToken);
                     AppSetting.setAuth(oJWT);
                 }
@@ -77,6 +86,9 @@ export class Http2Service {
             response => {
                 try {
                     let strAccessToken = response.headers.get("Authorization");
+                    if (strAccessToken.toString() == 'undefined') {
+                        throw new Error("There is no Authorization token");
+                    }
                     let oJWT = new JWT(strAccessToken);
                     AppSetting.setAuth(oJWT);
                 }

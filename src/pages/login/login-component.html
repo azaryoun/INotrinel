@@ -24,7 +24,7 @@
                         <ion-item style="background-color:transparent;border:solid #B2B2B2 1px">
                             <ion-icon item-right name="phone-portrait" style="padding-left:10px;font-size:30px"> </ion-icon>
                             <ion-input formControlName="mobileNo" outline type="tel" style="direction:ltr;font-size:30px" placeHolder="(___) ___-____"
-                                [textMask]="{mask: masks.phoneNumber}" autofocus  ></ion-input>
+                                [textMask]="{mask: masks.mobileNumber}" autofocus></ion-input>
 
 
                             <div class="alert alert-danger" *ngIf="form.controls.mobileNo.touched && form.controls.mobileNo.hasError('required')">
@@ -35,13 +35,6 @@
                                 شماره مویایل باید 10 رقم باشد.
 
                             </p>
-
-
-
-
-
-
-
 
 
 
@@ -74,24 +67,47 @@
                 </ion-col>
             </ion-row>
 
-             <ion-row *ngIf="ButtonPressed">
-                <ion-col col-4>
+            <p class="subtitle text-center" color="danger" *ngIf="isButtonPressed">
+                {{resultMessage}}
+
+
+            </p>
+            <ion-row *ngIf="isButtonPressed">
+                <ion-col col-5>
 
                 </ion-col>
-                <ion-col col-4 style="text-align:left">
-                    <button ion-button color="light" block outline style="float:left" [disabled]="!form.valid" (click)="enterSystem();">
-                ورود به سامانه
-                    </button>
+                <ion-col col-2 style="text-align:left">
+
+
+                    <ion-list>
+
+                     
+
+                        <ion-item style="background-color:transparent;border:solid #B2B2B2 1px">
+                            <ion-input outline type="tel" style="direction:ltr;font-size:30px" placeHolder="_-_-_-_-_" [textMask]="{mask: masks.code}" autofocus></ion-input>
+
+
+
+                        </ion-item>
+
+
+                    </ion-list>
+
+
+
+
+
+
                 </ion-col>
-                <ion-col col-4>
+                <ion-col col-5>
 
                 </ion-col>
             </ion-row>
 
-        <p class="subtitle text-center" color="danger" *ngIf="ButtonPressed">
-            کد فعالسازی در صورت موفقیت فرایند احراز هویت، برای شما پیامک خواهد شد.
 
-        </p>
+           
+
+
         </ion-grid>
 
     </form>

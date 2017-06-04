@@ -1,6 +1,6 @@
-import { Headers, Response, RequestOptions} from "@angular/http";
-import {Observable} from "rxjs/Observable";
-import {JWT} from './../models/j-w-t'
+import { Headers, Response, RequestOptions } from "@angular/http";
+import { Observable } from "rxjs/Observable";
+import { JWT } from './../models/j-w-t'
 
 export class AppSetting {
 
@@ -23,11 +23,11 @@ export class AppSetting {
 
         sessionStorage.removeItem(this.AUTH_KEY);
         console.error(error);
-      
+
         return Observable.throw(error.json().error || 'Server error');
     }
 
-    public static logout():boolean {
+    public static logout(): boolean {
         sessionStorage.removeItem(this.AUTH_KEY);
         return false;
     }
@@ -45,7 +45,7 @@ export class AppSetting {
 
     public static getAuth(): JWT {
         let authKey = sessionStorage.getItem(this.AUTH_KEY);
-        if (authKey) {
+        if (authKey != null && authKey.toString() != "undefined") {
             return JSON.parse(authKey);
         }
         else {

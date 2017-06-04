@@ -26,6 +26,8 @@ export class AccountService {
     public validateMobileNo(mobileNo:string) {
 
         let strUrl = this._serviceUrl +'validateMobileNo/' + mobileNo ;
+
+    
         return this._http.get(strUrl,
             AppSetting.getRequestOptions())
             .map(response => response.json());

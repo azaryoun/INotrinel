@@ -23,29 +23,28 @@ export class AccountService {
 
     }
 
-    public validateMobileNo(mobileNo:string) {
+    public validateMobileNo(mobileNo: string) {
 
-        let strUrl = this._serviceUrl +'validateMobileNo/' + mobileNo ;
+        let strUrl = this._serviceUrl + 'validateMobileNo/' + mobileNo;
 
-    
+
         return this._http.get(strUrl,
             AppSetting.getRequestOptions())
             .map(response => response.json());
 
     }
 
- /*   getNewsFiltered(queryString) {
-        return this.getNews().map(news => {
-            let theFilteredParks: any = [];
-            for (let theNews of news) {
-                if (theNews.title.toLowerCase().indexOf(queryString.toLowerCase()) > -1) {
-                    theFilteredParks.push(theNews);
-                }
-            }
-            return theFilteredParks;
-        });
-    }
 
-*/
+    public activateAccount(userId: string, code: string) {
+
+        let strUrl = this._serviceUrl + 'activateAccount/' + userId;
+
+        alert(code);
+
+        return this._http.put(strUrl, { code: code },
+            AppSetting.getRequestOptions())
+            .map(response => response.json());
+
+    }
 
 }

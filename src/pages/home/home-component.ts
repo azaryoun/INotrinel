@@ -24,9 +24,9 @@ export class HomeComponent {
 
   constructor(public navCtrl: NavController, private newsService: NewsService) {
 
-    this.newsService.getNews().subscribe(data => {
-      this.newses = data;
-    });
+    // this.newsService.getNews().subscribe(data => {
+    //   this.newses = data;
+    // });
 
   }
   goNewsDetail(news) {

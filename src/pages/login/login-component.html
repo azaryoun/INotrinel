@@ -27,14 +27,6 @@
                                 [textMask]="{mask: masks.mobileNumber}" autofocus></ion-input>
 
 
-                            <div class="alert alert-danger" *ngIf="form.controls.mobileNo.touched && form.controls.mobileNo.hasError('required')">
-                                شماره مویایل را وارد نمایید.
-                            </div>
-
-                            <p class="subtitle text-center" color="danger" *ngIf="form.controls.mobileNo.hasError('mobileNoIsInvalid')">
-                                شماره مویایل باید 10 رقم باشد.
-
-                            </p>
 
 
 
@@ -72,7 +64,7 @@
 
 
             </p>
-            <ion-row *ngIf="isButtonPressed">
+            <ion-row *ngIf="isSMSSent">
                 <ion-col col-5>
 
                 </ion-col>
@@ -81,10 +73,11 @@
 
                     <ion-list>
 
-                     
+
 
                         <ion-item style="background-color:transparent;border:solid #B2B2B2 1px">
-                            <ion-input outline type="tel" style="direction:ltr;font-size:30px" placeHolder="_-_-_-_-_" [textMask]="{mask: masks.code}" autofocus></ion-input>
+                            <ion-input outline type="tel" style="direction:ltr;font-size:30px" [formControl]="codeControl" placeHolder="_-_-_-_-_" [textMask]="{mask: masks.code}"
+                                autofocus></ion-input>
 
 
 
@@ -103,9 +96,13 @@
 
                 </ion-col>
             </ion-row>
+            <p class="subtitle text-center" color="danger" *ngIf="isCodeWrong">
+                کد وارد شده نادرست است
 
 
-           
+            </p>
+
+
 
 
         </ion-grid>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
 import { CommonValidator } from './../../validators/common-validator';
 import { HomeComponent } from './../home/home-component';
 import { AccountService } from './../../providers/account-service';
@@ -8,6 +9,11 @@ import { AccountService } from './../../providers/account-service';
 import { ValidateMobileNoResult } from './../../models/validate-mobile-no-result'
 
 import { ValidateMobileNoStatusEnum } from './../../models/validate-mobile-no-result'
+
+
+import { ActivateAccountResult } from './../../models/activate-mobile-no-result'
+
+import { ActivateAccountResultStatusEnum } from './../../models/activate-mobile-no-result'
 
 import { JWT } from './../../models/j-w-t';
 
@@ -22,12 +28,17 @@ export class LoginComponent {
   public form: FormGroup;
 
   public isButtonPressed: boolean = false;
-
+  public isSMSSent: boolean = false;
 
   public masks: any;
 
   public resultMessage: string;
 
+  private _userId: any;
+
+  public isCodeWrong: boolean = false;
+
+  public codeControl = new FormControl();
 
   constructor(public navCtrl: NavController, fb: FormBuilder, private _accountService: AccountService,
     private _loadingController: LoadingController
@@ -35,28 +46,74 @@ export class LoginComponent {
 
     this.masks = {
       mobileNumber: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
-      code: [/\d/,'-', /\d/,'-', /\d/,'-', /\d/,'-', /\d/]
+      code: [/\d/, '-', /\d/, '-', /\d/, '-', /\d/, '-', /\d/]
     };
+
 
 
     this.form = fb.group({
       mobileNo: ['', Validators.compose([Validators.required, CommonValidator.mobileNoIsInvalid])]
-    })
+    });
 
+
+
+
+
+
+    this.codeControl.valueChanges
+      .filter(text => {
+        let code = text.replace(/\D+/g, '');
+
+        this.isCodeWrong = false;
+
+        if (code.length == 5) {
+
+          return true;
+        }
+        return false;
+      })
+      .debounceTime(200)
+      .subscribe(value => {
+        let code = value.replace(/\D+/g, '');
+         let loader = _loadingController.create({
+          content: " ارتباط با سرویس دهنده ...",
+          dismissOnPageChange: false,
+        });
+
+        let userId = this._userId;
+        loader.present();
+
+
+        this._accountService.activateAccount(userId, code).subscribe(data => {
+          loader.dismiss();
+          let ativateAccountResult: ActivateAccountResult;
+          ativateAccountResult = data;
+          if (ativateAccountResult.status == ActivateAccountResultStatusEnum.isCodeValid) {
+            let jwt: JWT = ativateAccountResult.jwt;
+            AppSetting.setAuth(jwt);
+            this.enterSystem();
+          }
+          else {
+            this.isCodeWrong = true;
+          }
+
+        });
+
+
+
+      });
 
   }
 
-
-  // کد فعالسازی در صورت موفقیت فرایند احراز هویت، برای شما پیامک خواهد شد.
   public sendSMS() {
-
+    this.isSMSSent = false;
 
     let strMobileNo = this.form.controls['mobileNo'].value.replace(/\D+/g, '');
 
     let loader = this._loadingController.create({
       content: " ارتباط با سرویس دهنده ...",
+      dismissOnPageChange: true,
     });
-
 
     loader.present();
 
@@ -76,11 +133,9 @@ export class LoginComponent {
         case (ValidateMobileNoStatusEnum.isValid):
           {
             try {
-              //  let jwt: JWT = validateMobileNoResult.jwt;
-              //   alert(validateMobileNoResult);
-              //  console.log(validateMobileNoResult);
-              //   AppSetting.setAuth(jwt);
+              this._userId = validateMobileNoResult.userId;
               this.resultMessage = "کد فعال سازی برای موبایل شما پیامک گردید؛ برای ادامه کد دریافت شده را وارد کادر زیر نمایید:";
+              this.isSMSSent = true;
               break;
             }
             catch (ex) {
@@ -98,13 +153,10 @@ export class LoginComponent {
 
     );
 
-
-
-
-
   }
 
-  public enterSystem() {
+
+  private enterSystem() {
     this.navCtrl.setRoot(HomeComponent);
   }
 }

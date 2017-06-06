@@ -16,7 +16,7 @@ import { AppSetting } from './../app/app.setting';
 export class NewsService {
     data: any = null;
 
-    private _serviceUrl = 'assets/data/news-data.json';
+    private _serviceUrl = 'New/';
 
     constructor(private _http: Http2Service) {
         this._serviceUrl = AppSetting.SERVER_IP + this._serviceUrl;
@@ -25,18 +25,41 @@ export class NewsService {
 
     public getNews() {
 
-        let strUrl = this._serviceUrl;
+        let strUrl = this._serviceUrl + 'getNews/';
+
         return this._http.get(strUrl,
             AppSetting.getRequestOptions())
             .map(response => response.json());
 
     }
 
-    getNewsFiltered(queryString) {
+    // public getNewsFiltered(filter: string) {
+
+    //     let strUrl = this._serviceUrl + 'getNews/' + filter;
+
+
+    //     return this._http.get(strUrl,
+    //         AppSetting.getRequestOptions())
+    //         .map(response => response.json());
+
+    // }
+
+
+    public getNew(id: number) {
+
+        let strUrl = this._serviceUrl + 'getNew/' + id;
+       
+        return this._http.get(strUrl,
+            AppSetting.getRequestOptions())
+            .map(response => response.json());
+
+    }
+
+    getNewsFiltered(filter:string) {
         return this.getNews().map(news => {
             let theFilteredParks: any = [];
             for (let theNews of news) {
-                if (theNews.title.toLowerCase().indexOf(queryString.toLowerCase()) > -1) {
+                if (theNews.title.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
                     theFilteredParks.push(theNews);
                 }
             }

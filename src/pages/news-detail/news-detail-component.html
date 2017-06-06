@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar color="primary" style="direction: ltr">
@@ -8,15 +7,18 @@
 </ion-header>
 
 
-<ion-content class="news-detail-component">
-     <img src="{{news.bigImage}}" />
-  <h1 padding>{{news.title}}</h1>
+<ion-content class="news-detail-component" *ngIf="isloaded">
+  <img src="{{theNew.bigImage}}" />
+  <h1 padding>
+    {{theNew.title}}
+  </h1>
   <ion-card>
     <ion-card-header>
-      {{news.date}}
+      {{theNew.date}}
     </ion-card-header>
     <ion-card-content>
-      {{news.text}}
+      {{theNew.text}}
+
     </ion-card-content>
   </ion-card>
 </ion-content>

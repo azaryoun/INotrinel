@@ -5,6 +5,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WelcomeComponent } from './../pages/welcome/welcome-component';
 
+import { HomeComponent } from './../pages/home/home-component';
 
 export interface PageInterface {
   title: string;
@@ -27,8 +28,7 @@ export class MyApp {
     { title: 'تنظیمات', component: TabsPage, index: 3, icon: 'build' }
   ];
 
- // rootPage = TabsPage;
-    public rootPage = WelcomeComponent;
+  public rootPage = WelcomeComponent;
 
 
   constructor(platform: Platform, public menu: MenuController) {

@@ -16,17 +16,13 @@ export class Http2Service {
         return this._http.get(url, opts).map(
 
             response => {
-                try {
-                    let strAccessToken = response.headers.get("Authorization");
-                    if (strAccessToken.toString() == 'undefined') {
-                        throw new Error("There is no Authorization token");
-                    }
+                if (response.headers.has("authorization") == true) {
+                    let strAccessToken = response.headers.get("authorization");
                     let oJWT = new JWT(strAccessToken);
                     AppSetting.setAuth(oJWT);
                 }
-                catch (ex) {
+                else
                     AppSetting.logout();
-                }
                 return response;
             }
         )
@@ -40,17 +36,13 @@ export class Http2Service {
 
         return this._http.post(url, data, opts).map(
             response => {
-                try {
-                    let strAccessToken = response.headers.get("Authorization");
-                    if (strAccessToken.toString() == 'undefined') {
-                        throw new Error("There is no Authorization token");
-                    }
+                if (response.headers.has("authorization") == true) {
+                    let strAccessToken = response.headers.get("authorization");
                     let oJWT = new JWT(strAccessToken);
                     AppSetting.setAuth(oJWT);
                 }
-                catch (ex) {
+                else
                     AppSetting.logout();
-                }
                 return response;
             }
         )
@@ -63,17 +55,13 @@ export class Http2Service {
         this.configureAuth(opts);
         return this._http.put(url, data, opts).map(
             response => {
-                try {
-                    let strAccessToken = response.headers.get("Authorization");
-                    if (strAccessToken.toString() == 'undefined') {
-                        throw new Error("There is no Authorization token");
-                    }
+                if (response.headers.has("authorization") == true) {
+                    let strAccessToken = response.headers.get("authorization");
                     let oJWT = new JWT(strAccessToken);
                     AppSetting.setAuth(oJWT);
                 }
-                catch (ex) {
+                else
                     AppSetting.logout();
-                }
                 return response;
             }
         )
@@ -84,17 +72,13 @@ export class Http2Service {
         this.configureAuth(opts);
         return this._http.delete(url, opts).map(
             response => {
-                try {
-                    let strAccessToken = response.headers.get("Authorization");
-                    if (strAccessToken.toString() == 'undefined') {
-                        throw new Error("There is no Authorization token");
-                    }
+                if (response.headers.has("authorization") == true) {
+                    let strAccessToken = response.headers.get("authorization");
                     let oJWT = new JWT(strAccessToken);
                     AppSetting.setAuth(oJWT);
                 }
-                catch (ex) {
+                else
                     AppSetting.logout();
-                }
                 return response;
             }
         )
@@ -103,11 +87,13 @@ export class Http2Service {
 
     private configureAuth(opts: any) {
         let jWT = AppSetting.getAuth();
+
+
         if (jWT != null && jWT.accessToken != null) {
             if (opts.headers == null) {
                 opts.headers = new Headers();
             }
-            opts.headers.set("Authorization", `Bearer${jWT.accessToken}`);
+            opts.headers.set("authorization", `Bearer${jWT.accessToken}`);
         }
     }
 }

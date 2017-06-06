@@ -3,7 +3,7 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { CommonValidator } from './../../validators/common-validator';
-import { HomeComponent } from './../home/home-component';
+import { TabsPage } from './../tabs/tabs';
 import { AccountService } from './../../providers/account-service';
 
 import { ValidateMobileNoResult } from './../../models/validate-mobile-no-result'
@@ -18,6 +18,9 @@ import { ActivateAccountResultStatusEnum } from './../../models/activate-mobile-
 import { JWT } from './../../models/j-w-t';
 
 import { AppSetting } from './../../app/app.setting';
+
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'login-component',
@@ -41,8 +44,9 @@ export class LoginComponent {
   public codeControl = new FormControl();
 
   constructor(public navCtrl: NavController, fb: FormBuilder, private _accountService: AccountService,
-    private _loadingController: LoadingController
+    private _loadingController: LoadingController, private _storage: Storage
   ) {
+
 
     this.masks = {
       mobileNumber: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
@@ -54,9 +58,6 @@ export class LoginComponent {
     this.form = fb.group({
       mobileNo: ['', Validators.compose([Validators.required, CommonValidator.mobileNoIsInvalid])]
     });
-
-
-
 
 
 
@@ -75,7 +76,7 @@ export class LoginComponent {
       .debounceTime(200)
       .subscribe(value => {
         let code = value.replace(/\D+/g, '');
-         let loader = _loadingController.create({
+        let loader = _loadingController.create({
           content: " ارتباط با سرویس دهنده ...",
           dismissOnPageChange: false,
         });
@@ -91,6 +92,9 @@ export class LoginComponent {
           if (ativateAccountResult.status == ActivateAccountResultStatusEnum.isCodeValid) {
             let jwt: JWT = ativateAccountResult.jwt;
             AppSetting.setAuth(jwt);
+            this._storage.set('userId', userId);
+
+
             this.enterSystem();
           }
           else {
@@ -103,7 +107,21 @@ export class LoginComponent {
 
       });
 
+
+
+
+
+    _storage.get('userId').then((val) => {
+      if (val != null) {
+        this.enterSystem();
+      }
+
+
+    });
+
   }
+
+
 
   public sendSMS() {
     this.isSMSSent = false;
@@ -157,6 +175,6 @@ export class LoginComponent {
 
 
   private enterSystem() {
-    this.navCtrl.setRoot(HomeComponent);
+    this.navCtrl.setRoot(TabsPage);
   }
 }

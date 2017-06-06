@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 
 import { Observable } from 'rxjs/Rx';
@@ -16,17 +16,29 @@ import { News } from './../../models/news';
 
 @Component({
   selector: 'home-component',
-  templateUrl: 'home-component.html' 
+  templateUrl: 'home-component.html'
 })
 export class HomeComponent {
 
   private newses: Array<News> = [];
 
-  constructor(public navCtrl: NavController, private newsService: NewsService) {
+  constructor(public navCtrl: NavController, private newsService: NewsService, private _loadingController: LoadingController) {
 
-    // this.newsService.getNews().subscribe(data => {
-    //   this.newses = data;
-    // });
+    let loader = this._loadingController.create({
+      content: " ارتباط با سرویس دهنده ...",
+      dismissOnPageChange: false,
+    });
+
+    loader.present();
+
+
+    this.newsService.getNews().subscribe(data => {
+      this.newses = data;
+
+
+
+      loader.dismiss();
+    });
 
   }
   goNewsDetail(news) {
@@ -42,9 +54,24 @@ export class HomeComponent {
     if (queryString !== undefined) {
       if (queryString.trim() == '') {
         this.resetList(event);
+        return;
       }
+
+      if (queryString.length<=3){
+        return;
+      }
+
+      let loader = this._loadingController.create({
+        content: " ارتباط با سرویس دهنده ...",
+        dismissOnPageChange: true,
+      });
+
+      loader.present();
+
+
       this.newsService.getNewsFiltered(queryString).subscribe(data => {
         this.newses = data;
+        loader.dismiss();
       })
     }
 
@@ -54,8 +81,15 @@ export class HomeComponent {
   }
 
   resetList(event) {
+    let loader = this._loadingController.create({
+      content: " ارتباط با سرویس دهنده ...",
+      dismissOnPageChange: true,
+    });
+
+    loader.present();
     this.newsService.getNews().subscribe(data => {
       this.newses = data;
+      loader.dismiss();
     });
 
 

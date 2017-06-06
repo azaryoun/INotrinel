@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { TextMaskModule } from 'angular2-text-mask';
+import { IonicStorageModule } from '@ionic/storage';
 
 //Components
 import { MyApp } from './app.component';
@@ -32,8 +33,8 @@ import { AccountService } from './../providers/account-service';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    TextMaskModule
-
+    TextMaskModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -50,6 +51,7 @@ import { AccountService } from './../providers/account-service';
     , Http2Service
     , NewsService
     , AccountService
+   
 
   ]
 })

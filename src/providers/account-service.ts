@@ -39,7 +39,7 @@ export class AccountService {
 
         let strUrl = this._serviceUrl + 'activateAccount/' + userId;
 
-        alert(code);
+      
 
         return this._http.put(strUrl, { code: code },
             AppSetting.getRequestOptions())

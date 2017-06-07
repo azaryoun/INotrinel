@@ -22,5 +22,7 @@ export enum ActivateAccountResultStatusEnum {
     isUserInvalid = 2,
     isRegisterationInvalid = 3,
     isCodeInvalid = 4,
+    isUserInactive=5,
+    isLoginOK=6
 }
 

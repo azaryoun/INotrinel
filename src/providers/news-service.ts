@@ -33,16 +33,16 @@ export class NewsService {
 
     }
 
-    // public getNewsFiltered(filter: string) {
+    public getNewsFiltered(filter: string) {
 
-    //     let strUrl = this._serviceUrl + 'getNews/' + filter;
+        let strUrl = this._serviceUrl + 'getNews/' + filter;
 
 
-    //     return this._http.get(strUrl,
-    //         AppSetting.getRequestOptions())
-    //         .map(response => response.json());
+        return this._http.get(strUrl,
+            AppSetting.getRequestOptions())
+            .map(response => response.json());
 
-    // }
+    }
 
 
     public getNew(id: number) {
@@ -55,17 +55,17 @@ export class NewsService {
 
     }
 
-    getNewsFiltered(filter:string) {
-        return this.getNews().map(news => {
-            let theFilteredParks: any = [];
-            for (let theNews of news) {
-                if (theNews.title.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
-                    theFilteredParks.push(theNews);
-                }
-            }
-            return theFilteredParks;
-        });
-    }
+    // getNewsFiltered(filter:string) {
+    //     return this.getNews().map(news => {
+    //         let theFilteredParks: any = [];
+    //         for (let theNews of news) {
+    //             if (theNews.title.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
+    //                 theFilteredParks.push(theNews);
+    //             }
+    //         }
+    //         return theFilteredParks;
+    //     });
+    // }
 
 
 

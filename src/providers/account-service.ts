@@ -39,12 +39,26 @@ export class AccountService {
 
         let strUrl = this._serviceUrl + 'activateAccount/' + userId;
 
-      
+
 
         return this._http.put(strUrl, { code: code },
             AppSetting.getRequestOptions())
             .map(response => response.json());
 
     }
+
+
+    public checkAccount(userId: string) {
+
+        let strUrl = this._serviceUrl + 'checkAccount/' + userId;
+
+
+
+        return this._http.get(strUrl,
+            AppSetting.getRequestOptions())
+            .map(response => response.json());
+
+    }
+
 
 }

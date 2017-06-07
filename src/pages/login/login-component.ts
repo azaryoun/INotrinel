@@ -113,6 +113,45 @@ export class LoginComponent {
 
     _storage.get('userId').then((val) => {
       if (val != null) {
+
+
+
+        let userId = val;
+
+        // let loader = _loadingController.create({
+        //   content: " ارتباط با سرویس دهنده ...",
+        //   dismissOnPageChange: false,
+        // });
+
+        // loader.present();
+
+        this._accountService.checkAccount(userId).subscribe(data => {
+       //   loader.dismiss();
+          let ativateAccountResult: ActivateAccountResult;
+          ativateAccountResult = data;
+          if (ativateAccountResult.status == ActivateAccountResultStatusEnum.isLoginOK) {
+            let jwt: JWT = ativateAccountResult.jwt;
+            AppSetting.setAuth(jwt);
+            this.enterSystem();
+          }
+          else {
+            this._storage.remove('userId');
+          }
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
         this.enterSystem();
       }
 

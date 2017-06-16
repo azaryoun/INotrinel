@@ -19,11 +19,11 @@ $text-input-highlight-color-invalid:$toolbarBackcolor;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
-    src: url('../assets/fonts/iranSans.ttf');
+    src: url('../assets/fonts/Zapf Humanist 601 Italic BT.ttf');
 }
 
 html{
-direction: rtl;
+direction: ltr;
 
 }
 
@@ -38,11 +38,11 @@ ion-app.md {
     background-color: rgb(255, 255, 255);
 }
 
-.menu-inner{
-    left: auto;
-    right:0;
+// .menu-inner{
+//     left: auto;
+//     right:0;
 
-}
+// }
 
 
 
@@ -131,9 +131,9 @@ color:$tabsForecolor;
 background-color: darken($itemBackcolor, 10%);
 }
 
-.tabs-md .tab-button-text {
-    padding-left: 10px;
-}
+// .tabs-md .tab-button-text {
+//     padding-left: 10px;
+// }
 
 
 .card-md {
@@ -146,10 +146,10 @@ background-color: darken($itemBackcolor, 10%);
    text-align: justify;
 }
 
- .toolbar-md-primary .toolbar-title-md {
+//  .toolbar-md-primary .toolbar-title-md {
   
-    text-align: right;
-}
+//     text-align: right;
+// }
 
 .text-center{
 text-align: center;

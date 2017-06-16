@@ -22,10 +22,10 @@ export class MyApp {
 
   // set our app's pages
   public appPages: PageInterface[] = [
-    { title: 'خانه', component: TabsPage, icon: 'home' },
-    { title: 'عضویت', component: TabsPage, index: 1, icon: 'contacts' },
-    { title: 'ارسال متن', component: TabsPage, index: 2, icon: 'paper-plane' },
-    { title: 'تنظیمات', component: TabsPage, index: 3, icon: 'build' }
+    { title: 'Home', component: TabsPage, icon: 'home' },
+    { title: 'Memebership', component: TabsPage, index: 1, icon: 'contacts' },
+    { title: 'Send SMS', component: TabsPage, index: 2, icon: 'paper-plane' },
+    { title: 'Settings', component: TabsPage, index: 3, icon: 'build' }
   ];
 
   public rootPage = WelcomeComponent;

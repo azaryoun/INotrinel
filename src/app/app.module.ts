@@ -34,7 +34,7 @@ import { AccountService } from './../providers/account-service';
   imports: [
     IonicModule.forRoot(MyApp),
     TextMaskModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot({ name: '__mydb', driverOrder: ['sqlite', 'websql', 'indexeddb'] })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -61,6 +61,9 @@ export class LoginComponent {
 
 
 
+  
+
+
     this.codeControl.valueChanges
       .filter(text => {
         let code = text.replace(/\D+/g, '');
@@ -76,12 +79,14 @@ export class LoginComponent {
       .debounceTime(200)
       .subscribe(value => {
         let code = value.replace(/\D+/g, '');
+
         let loader = _loadingController.create({
-          content: " ارتباط با سرویس دهنده ...",
+          content: "Connecting to Server ... ",
           dismissOnPageChange: false,
         });
 
         let userId = this._userId;
+        
         loader.present();
 
 
@@ -109,24 +114,16 @@ export class LoginComponent {
 
 
 
-
+// Check Local Storage if user has previously authenticated. 
 
     _storage.get('userId').then((val) => {
       if (val != null) {
 
-
-
         let userId = val;
 
-        // let loader = _loadingController.create({
-        //   content: " ارتباط با سرویس دهنده ...",
-        //   dismissOnPageChange: false,
-        // });
-
-        // loader.present();
 
         this._accountService.checkAccount(userId).subscribe(data => {
-       //   loader.dismiss();
+
           let ativateAccountResult: ActivateAccountResult;
           ativateAccountResult = data;
           if (ativateAccountResult.status == ActivateAccountResultStatusEnum.isLoginOK) {
@@ -168,7 +165,7 @@ export class LoginComponent {
     let strMobileNo = this.form.controls['mobileNo'].value.replace(/\D+/g, '');
 
     let loader = this._loadingController.create({
-      content: " ارتباط با سرویس دهنده ...",
+      content: "Connecting to Server ... ",
       dismissOnPageChange: true,
     });
 
@@ -179,19 +176,19 @@ export class LoginComponent {
       switch (validateMobileNoResult.status) {
         case ValidateMobileNoStatusEnum.isInvalid:
           {
-            this.resultMessage = "شماره مویایل شما جز مشترکین نیست";
+            this.resultMessage = "The mobile number does not belong to the members";
             break;
           }
         case (ValidateMobileNoStatusEnum.isAlreadyRegistered):
           {
-            this.resultMessage = "این شماره موبایل، قبلا فعال شده است";
+            this.resultMessage = "This mobile number is already activated.";
             break;
           }
         case (ValidateMobileNoStatusEnum.isValid):
           {
             try {
               this._userId = validateMobileNoResult.userId;
-              this.resultMessage = "کد فعال سازی برای موبایل شما پیامک گردید؛ برای ادامه کد دریافت شده را وارد کادر زیر نمایید:";
+              this.resultMessage = "The activation code is sent to you by SMS; Enter it to continue ...";
               this.isSMSSent = true;
               break;
             }

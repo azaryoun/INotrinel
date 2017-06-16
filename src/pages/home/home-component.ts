@@ -25,7 +25,7 @@ export class HomeComponent {
   constructor(public navCtrl: NavController, private newsService: NewsService, private _loadingController: LoadingController) {
 
     let loader = this._loadingController.create({
-      content: " ارتباط با سرویس دهنده ...",
+      content: "Connecting to Server ... ",
       dismissOnPageChange: false,
     });
 
@@ -62,7 +62,7 @@ export class HomeComponent {
       }
 
       let loader = this._loadingController.create({
-        content: " ارتباط با سرویس دهنده ...",
+        content: "Connecting to Server ... ",
         dismissOnPageChange: true,
       });
 
@@ -82,7 +82,7 @@ export class HomeComponent {
 
   resetList(event) {
     let loader = this._loadingController.create({
-      content: " ارتباط با سرویس دهنده ...",
+      content: "Connecting to Server ... ",
       dismissOnPageChange: true,
     });
 
